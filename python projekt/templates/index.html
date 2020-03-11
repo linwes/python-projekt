@@ -7,8 +7,9 @@
 </head>
 <body>
     <div class="formulär">
-        <form method="post" action='http://localhost:5080/'>
+        <form method="post" action="http://localhost:5080/">
             <h1>Gissa ordet</h1>
+            <img src="{{url_for('static', filename='bild.png')}}"/>
             <ul>
                 <li>
                     <label>
@@ -17,12 +18,13 @@
                 </li>
             </ul>
             <input type="submit" value="slutför" name="läggTillKnapp"/>
-        <form>
+        </form>
     </div>
 <div class="svar-wrapper">  
     <li><p>Din gissning var: {{fNamn}}</p></li>
     <li><p>svar: {{djuret}}</p></li>  
-    <li><p>hej: {{hej}}</p></li> 
+    <li><p>hej: {{hej}}</p></li>
+</div>
 <script>
     const sendData = async (url = '', data = {}) => {
         const response = await fetch(url, {
