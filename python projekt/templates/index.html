@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="startsida" content="width=device-width, initial-scale=1.0">
+    <title>användar uppgifter</title>
+</head>
+<body>
+    <div class="formulär">
+        <form method="post" action='http://localhost:5080/'>
+            <h1>Gissa ordet</h1>
+            <ul>
+                <li>
+                    <label>
+                        <input type="text" name="fNamn" />
+                    </label>
+                </li>
+            </ul>
+            <input type="submit" value="slutför" name="läggTillKnapp"/>
+        <form>
+    </div>
+<div class="svar-wrapper">  
+    <li><p>Din gissning var: {{fNamn}}</p></li>
+    <li><p>svar: {{djuret}}</p></li>  
+    <li><p>hej: {{hej}}</p></li> 
+<script>
+    const sendData = async (url = '', data = {}) => {
+        const response = await fetch(url, {
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            redirect: 'follow',
+            body: JSON.stringify(data)
+        });
+        return await response.json(); 
+    }
+
+    document.querySelector('.submit').addEventListener('click', (e) => {
+        const form = document.querySelector('form');
+        const postData = Object.values(form).reduce((obj,field) => { obj[field.name] = field.value; return obj }, {});
+        console.log(postData);
+        sendData('http://localhost:5000/', postData)
+            .then((data) => {
+            console.log(data);
+        });
+        return false;
+    });
+</script>    
+</body>
+</html>
