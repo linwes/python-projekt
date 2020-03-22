@@ -2,25 +2,50 @@ from PIL import ImageTk, Image, ImageDraw
 import PIL
 from tkinter import *
 import json
+from tkinter.colorchooser import askcolor
+
 
 width = 800
 height = 400
 center = height//2
 white = (255, 255, 255)
 green = (0,128,0)
+standard_pen_storlek = 5.0
+standard_färg = 'black'
+
+color = standard_färg
 
 def save():
     filename = "static/bild.png"
     image1.save(filename)
 
+def choose_color():
+    color = standard_färg
+    color = askcolor(color=color)
+
 def paint(event):
-    # python_green = "#476042"
+    python_green = "#476042"
     x1, y1 = (event.x - 1), (event.y - 1)
     x2, y2 = (event.x + 1), (event.y + 1)
     cv.create_oval(x1, y1, x2, y2, fill="black",width=5)
     draw.line([x1, y1, x2, y2],fill="black",width=5)
+    if x1 and y1: 
+        cv.create_line(fill=choose_color, capsyle=ROUND, smooth=TRUE, splinesteps=36)
+    old_x = None
+    old_y = None
+    cv.bind("<B1-Motion>")
+    paint_color = 'black'
+    if old_x and old_y:
+        cv.create_line(old_x, old_y, event.x, event.y,
+                            width=50, fill=paint_color,
+                            capstyle=ROUND, smooth=TRUE, splinesteps=36)
+    old_x = event.x
+    old_y = event.y
+def reset(event):
+    old_x, old_y = None, None
 
 root = Tk()
+
 
 
 # Tkinter create a canvas to draw on
@@ -54,6 +79,8 @@ message.pack(side=BOTTOM)
 # filename = "my_drawing.png"
 # image1.save(filename)
 button=Button(text="save",command=save)
+färg_knapp = Button(text = 'färg', command=choose_color)
+färg_knapp.pack(side=LEFT)
 button.pack()
 root.mainloop()
 

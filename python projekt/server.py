@@ -30,4 +30,4 @@ def skrivUt():
 
 if __name__ :
     app.debug = True
-    app.run(host= '192.168.1.3', port=5080)
+    app.run(host= '127.0.0.1', port=5080)
