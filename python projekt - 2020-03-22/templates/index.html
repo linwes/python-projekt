@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="startsida" content="width=device-width, initial-scale=1.0">
+    <title>användar uppgifter</title>
+    <link rel="stylesheet" type ="text/css" href = "/static/css/stylesheet.css">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower&display=swa">
+</head>
+<body>
+    <div class="formulär">
+        <form method="post" action="http://localhost:5080/">
+            <h1>Welcome to Skribble: Guess the picture!</h1>
+            <div class = "bilden" >
+                <img src="/static/bild.png"/>
+            </div>
+            <div class = "box-list">
+                    <label>Guess:
+                        <input type="text" name="gissa"/>
+                    </label>
+                <div class="sub-button"> 
+                    <input type="submit" value="slutför" name="läggTillKnapp"/>
+                </div>  
+            </div>
+        </form>
+    </div>
+    <div class="svar-wrapper">
+        <li><p>Du gissade: {{gissa}}</p></li>
+        <li><p>svar: {{gissat}}</p></li>  
+        <li><p>Ordet: {{ord}}</p></li>
+    </div>
+
+<script>
+    const sendData = async (url = '', data = {}) => {
+        const response = await fetch(url, {
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            redirect: 'follow',
+            body: JSON.stringify(data)
+        });
+        return await response.json(); 
+    }
+
+    document.querySelector('.submit').addEventListener('click', (e) => {
+        const form = document.querySelector('form');
+        const postData = Object.values(form).reduce((obj,field) => { obj[field.name] = field.value; return obj }, {});
+        console.log(postData);
+        sendData('http://localhost:5080/', postData)
+            .then((data) => {
+            console.log(data);
+        });
+        return false;
+    });
+</script>    
+</body>
+</html>

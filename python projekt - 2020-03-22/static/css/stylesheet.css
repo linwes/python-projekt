@@ -1,0 +1,48 @@
+body {
+    background-image:url("/static/css/skribbleBlur.jpg");
+    color:white;
+}
+p{
+    color:white;
+    font-family: 'Indie Flower', cursive;
+    font-size: 40px;
+    text-align: center;
+    font-family: 'Indie Flower', cursive;
+    text-shadow:5px 5px black;
+    
+}
+
+.box-list{
+    display: flex;
+    list-style-type:none;
+    justify-content: center;
+    color:white;
+    text-align: center;
+    font-family: 'Indie Flower', cursive;
+    text-shadow:5px 5px black;
+}
+.sub-button{
+
+    margin-left: 25px;
+   
+}
+.svar-wrapper{
+    display: flex;
+    justify-content: space-around;
+    list-style-type:none;
+    margin-top: 50px;
+    margin-right:150px;
+}
+h1 {
+    color:white;
+    font-size: 60px;
+    text-align: center;
+    font-family: 'Indie Flower', cursive;
+    text-shadow:5px 5px black;
+}
+
+.bilden {
+    display: flex;
+    margin-bottom: 20px;
+    justify-content: center;
+}
