@@ -4,27 +4,32 @@
     <meta charset="UTF-8">
     <meta name="startsida" content="width=device-width, initial-scale=1.0">
     <title>användar uppgifter</title>
+    <link rel="stylesheet" type ="text/css" href = "index.css">
 </head>
 <body>
     <div class="formulär">
         <form method="post" action="http://localhost:5080/">
-            <h1>Gissa ordet</h1>
-            <img src="{{url_for('static', filename='bild.png')}}"/>
-            <ul>
-                <li>
-                    <label>
-                        <input type="text" name="fNamn" />
+            <h1>Welcome to our game: Guess the picture!</h1>
+            <div class = "bilden" >
+                <img src="/python projekt/static/bild.png"/>
+            </div>
+            <div class = "box-list">
+                    <label>Guess:
+                        <input type="text" name="fNamn"/>
                     </label>
-                </li>
-            </ul>
-            <input type="submit" value="slutför" name="läggTillKnapp"/>
+                <div class="sub-button"> 
+                    <input type="submit" value="slutför" name="läggTillKnapp"/>
+                </div>  
+            </div>
         </form>
     </div>
-<div class="svar-wrapper">  
-    <li><p>Din gissning var: {{fNamn}}</p></li>
-    <li><p>svar: {{djuret}}</p></li>  
-    <li><p>hej: {{hej}}</p></li>
-</div>
+    <div class="svar-wrapper">  
+        <li><p>Din gissning var: {{fNamn}}</p></li>
+        <li><p>svar: {{djuret}}</p></li>  
+        <li><p>hej: {{hej}}</p></li>
+    </div>
+
+
 <script>
     const sendData = async (url = '', data = {}) => {
         const response = await fetch(url, {
