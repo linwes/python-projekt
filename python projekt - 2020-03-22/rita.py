@@ -4,7 +4,6 @@ import PIL, json, requests
 from PIL import ImageGrab
 import ord
 
-
 class main:
     def __init__(self,master):
         self.master = master
@@ -85,11 +84,6 @@ class main:
         self.ny = Button(text='Klicka för att få ettord', bg='#007ad9', fg='white', command=self.open)
         self.ny.pack(side=BOTTOM, fill=X)
     
-
-
-        
-        
-
 if __name__ == '__main__':
     root = Tk()
     main(root)
